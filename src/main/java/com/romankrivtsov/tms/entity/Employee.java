@@ -1,0 +1,39 @@
+package com.romankrivtsov.tms.entity;
+
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "employees")
+public class Employee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employees_id_seq")
+    @SequenceGenerator(name = "employees_id_seq", allocationSize = 1)
+    @Column(name = "id")
+    int id;
+
+    @Column(name = "name")
+    String name;
+
+    @Column(name = "patronymic")
+    String patronymic;
+
+    @Column(name = "surname")
+    String surname;
+
+    @Column(name = "position")
+    String position;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id")
+    Department department;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "employee_task",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "task_id"))
+    private List<Task> tasks;
+
+}
