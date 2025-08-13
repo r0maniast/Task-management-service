@@ -28,4 +28,35 @@ public class Task {
     @ManyToMany(mappedBy = "tasks")
     private List<Employee> performers;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public List<Employee> getPerformers() {
+        return performers;
+    }
+
+    public void setPerformers(List<Employee> performers) {
+        this.performers = performers;
+    }
 }
