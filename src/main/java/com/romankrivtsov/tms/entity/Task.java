@@ -28,6 +28,13 @@ public class Task {
     @ManyToMany(mappedBy = "tasks")
     private List<Employee> performers;
 
+    public Task() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public String getTitle() {
         return title;
     }

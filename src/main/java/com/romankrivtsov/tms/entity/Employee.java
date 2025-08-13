@@ -36,6 +36,13 @@ public class Employee {
             inverseJoinColumns = @JoinColumn(name = "task_id"))
     private List<Task> tasks;
 
+    public Employee() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
