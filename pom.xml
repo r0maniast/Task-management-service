@@ -34,6 +34,8 @@
 
     <properties>
         <java.version>17</java.version>
+
+        <hibernate-validator.version>9.0.1.Final</hibernate-validator.version>
     </properties>
 
     <dependencies>
@@ -55,6 +57,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
         </dependency>
     </dependencies>
 
