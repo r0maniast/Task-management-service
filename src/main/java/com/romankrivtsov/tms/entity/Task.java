@@ -1,5 +1,6 @@
 package com.romankrivtsov.tms.entity;
 
+import com.romankrivtsov.tms.entity.enums.TaskStatus;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class Task {
 
 
     @Column(name = "status")
-    String status;
+    TaskStatus status;
 
     @ManyToMany(mappedBy = "tasks")
     private List<Employee> performers;
@@ -51,11 +52,11 @@ public class Task {
         this.description = description;
     }
 
-    public String getStatus() {
+    public TaskStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TaskStatus status) {
         this.status = status;
     }
 
