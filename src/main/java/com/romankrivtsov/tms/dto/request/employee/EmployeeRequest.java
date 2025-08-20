@@ -2,6 +2,7 @@ package com.romankrivtsov.tms.dto.request.employee;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class EmployeeRequest {
@@ -20,7 +21,7 @@ public class EmployeeRequest {
     @Size(max = 30, groups = CreateValidate.class)
     private String position;
 
-    @NotBlank(groups = CreateValidate.class)
+    @NotNull(groups = CreateValidate.class)
     @Min(value = 1, groups = CreateValidate.class)
     private int departmentId;
 
