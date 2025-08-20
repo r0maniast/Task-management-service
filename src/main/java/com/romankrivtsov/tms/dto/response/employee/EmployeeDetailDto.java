@@ -1,11 +1,7 @@
 package com.romankrivtsov.tms.dto.response.employee;
 
 import com.romankrivtsov.tms.dto.response.department.DepartmentSummaryDto;
-import com.romankrivtsov.tms.dto.response.task.TaskSummaryDto;
 import com.romankrivtsov.tms.entity.Employee;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class EmployeeDetailDto {
     private int id;
@@ -13,8 +9,7 @@ public class EmployeeDetailDto {
     private String patronymic;
     private String surname;
     private String position;
-    private DepartmentSummaryDto department;
-    private List<TaskSummaryDto> tasks;
+    private DepartmentSummaryDto departmentId;
 
     public static EmployeeDetailDto from(Employee employee){
         EmployeeDetailDto employeeDetailDto = new EmployeeDetailDto();
@@ -24,10 +19,7 @@ public class EmployeeDetailDto {
         employeeDetailDto.setSurname(employee.getSurname());
         employeeDetailDto.setPosition(employee.getPosition());
 
-        employeeDetailDto.setDepartment(DepartmentSummaryDto.from(employee.getDepartment()));
-        employeeDetailDto.setTasks(employee.getTasks().stream()
-                .map(TaskSummaryDto::from)
-                .collect(Collectors.toList()));
+        employeeDetailDto.setDepartmentId(DepartmentSummaryDto.from(employee.getDepartment()));
         return employeeDetailDto;
     }
 
@@ -71,19 +63,12 @@ public class EmployeeDetailDto {
         this.position = position;
     }
 
-    public DepartmentSummaryDto getDepartment() {
-        return department;
+    public DepartmentSummaryDto getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment(DepartmentSummaryDto department) {
-        this.department = department;
+    public void setDepartmentId(DepartmentSummaryDto departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public List<TaskSummaryDto> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<TaskSummaryDto> tasks) {
-        this.tasks = tasks;
-    }
 }
