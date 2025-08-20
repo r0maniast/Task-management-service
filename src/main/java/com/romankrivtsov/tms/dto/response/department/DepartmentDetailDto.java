@@ -15,11 +15,14 @@ public class DepartmentDetailDto {
     public static DepartmentDetailDto from(Department department){
         DepartmentDetailDto departmentDetailDto = new DepartmentDetailDto();
         departmentDetailDto.setId(department.getId());
+        departmentDetailDto.setTitle(department.getTitle());
         List<Employee> departmentEmployees = department.getEmployees();
         if(departmentEmployees != null){
             departmentDetailDto.setEmployees(departmentEmployees.stream()
                     .map(EmployeeSummaryDto::from)
                     .collect(Collectors.toList()));
+        } else {
+            departmentDetailDto.setEmployees(List.of());
         }
         return departmentDetailDto;
     }
