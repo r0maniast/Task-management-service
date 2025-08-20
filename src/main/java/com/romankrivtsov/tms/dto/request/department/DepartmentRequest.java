@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Size;
 
 public class DepartmentRequest {
     @NotBlank(groups = CreateValidate.class)
-    @Size(min = 1)
+    @Size(min = 1, max = 50)
     private String title;
 
     public String getTitle() {
@@ -15,8 +15,5 @@ public class DepartmentRequest {
     public void setTitle(String title) {
         this.title = title;
     }
-
-    public interface CreateValidate{}
-    public interface UpdateValidate{}
 
 }
