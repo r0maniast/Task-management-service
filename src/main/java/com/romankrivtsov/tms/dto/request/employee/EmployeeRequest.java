@@ -1,5 +1,6 @@
 package com.romankrivtsov.tms.dto.request.employee;
 
+import com.romankrivtsov.tms.util.validate.CreateValidate;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,7 +11,7 @@ public class EmployeeRequest {
     @Size(min = 1, max = 15, groups = CreateValidate.class)
     private String name;
 
-    @Size(min = 1, max = 15, groups = CreateValidate.class)
+    @Size(min = 1, max = 20, groups = CreateValidate.class)
     private String patronymic;
 
     @NotBlank(groups = CreateValidate.class)
@@ -64,7 +65,4 @@ public class EmployeeRequest {
     public void setDepartmentId(int departmentId) {
         this.departmentId = departmentId;
     }
-
-    public interface CreateValidate{}
-    public interface UpdateValidate{}
 }

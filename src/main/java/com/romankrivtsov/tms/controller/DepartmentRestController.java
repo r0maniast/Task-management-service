@@ -4,6 +4,8 @@ import com.romankrivtsov.tms.application.DepartmentAppService;
 import com.romankrivtsov.tms.dto.request.department.DepartmentRequest;
 import com.romankrivtsov.tms.dto.response.department.DepartmentDetailDto;
 import com.romankrivtsov.tms.dto.response.department.DepartmentSummaryDto;
+import com.romankrivtsov.tms.util.validate.CreateValidate;
+import com.romankrivtsov.tms.util.validate.UpdateValidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,13 +38,13 @@ public class DepartmentRestController {
 
     @PutMapping("/{id}")
     public DepartmentDetailDto updateDepartment(@PathVariable int id,
-                                            @Validated(DepartmentRequest.UpdateValidate.class)
+                                            @Validated(UpdateValidate.class)
                                                 @RequestBody DepartmentRequest departmentRequest) {
         return departmentAppService.updateDepartment(id, departmentRequest);
     }
 
     @PostMapping
-    public ResponseEntity<DepartmentDetailDto> saveDepartment(@Validated(DepartmentRequest.CreateValidate.class)
+    public ResponseEntity<DepartmentDetailDto> saveDepartment(@Validated(CreateValidate.class)
                                                               @RequestBody DepartmentRequest departmentRequest) {
         DepartmentDetailDto departmentDetailDto = departmentAppService.saveDepartment(departmentRequest);
 

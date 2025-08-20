@@ -1,5 +1,6 @@
 package com.romankrivtsov.tms.dto.request.department;
 
+import com.romankrivtsov.tms.util.validate.CreateValidate;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
