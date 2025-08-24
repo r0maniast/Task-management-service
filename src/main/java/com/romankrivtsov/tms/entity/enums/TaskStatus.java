@@ -1,26 +1,13 @@
 package com.romankrivtsov.tms.entity.enums;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum TaskStatus {
-    REGISTERED("зарегистрирована"),
-    ANALYSIS("анализ"),
-    IN_PROGRESS("в работе"),
-    TESTING("тестирование"),
-    CLARIFICATION("на уточнении"),
-    PROD_DEPLOY("перенос на прод"),
-    DONE("выполнена");
-
-    private final String dbValue;
-
-    TaskStatus(String dbValue) {
-        this.dbValue = dbValue;
-    }
-
-    public String getDbValue() {
-        return dbValue;
-    }
-
-    public static TaskStatus fromDb(String value) {
-        for (TaskStatus s : values()) if (s.dbValue.equals(value)) return s;
-        throw new IllegalArgumentException("Unknown status: " + value);
-    }
+    @JsonProperty("REGISTERED") REGISTERED,
+    @JsonProperty("ANALYSIS") ANALYSIS,
+    @JsonProperty("IN_PROGRESS") IN_PROGRESS,
+    @JsonProperty("TESTING") TESTING,
+    @JsonProperty("CLARIFICATION") CLARIFICATION,
+    @JsonProperty("PROD_DEPLOY") PROD_DEPLOY,
+    @JsonProperty("DONE") DONE
 }
