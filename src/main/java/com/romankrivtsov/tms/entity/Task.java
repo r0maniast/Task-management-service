@@ -3,7 +3,7 @@ package com.romankrivtsov.tms.entity;
 import com.romankrivtsov.tms.entity.enums.TaskStatus;
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -24,10 +24,17 @@ public class Task {
 
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     TaskStatus status;
 
-    @ManyToMany(mappedBy = "tasks")
-    private List<Employee> performers;
+    @ManyToMany(cascade = {CascadeType.PERSIST,
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH})
+    @JoinTable(name = "employee_task",
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id"))
+    private Set<Employee> performers;
 
     public Task() {
     }
@@ -60,11 +67,21 @@ public class Task {
         this.status = status;
     }
 
-    public List<Employee> getPerformers() {
+    public Set<Employee> getPerformers() {
         return performers;
     }
 
-    public void setPerformers(List<Employee> performers) {
+    public void setPerformers(Set<Employee> performers) {
         this.performers = performers;
+    }
+
+    public void addPerformer(Employee employee){
+        this.getPerformers().add(employee);
+        employee.getTasks().add(this);
+    }
+
+    public void removePerformer(Employee employee){
+        this.getPerformers().remove(employee);
+        employee.getTasks().remove(this);
     }
 }

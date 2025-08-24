@@ -1,10 +1,11 @@
 package com.romankrivtsov.tms.dto.response.task;
 
 import com.romankrivtsov.tms.dto.response.employee.EmployeeSummaryDto;
+import com.romankrivtsov.tms.entity.Employee;
 import com.romankrivtsov.tms.entity.Task;
 import com.romankrivtsov.tms.entity.enums.TaskStatus;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class TaskDetailDto {
@@ -12,18 +13,21 @@ public class TaskDetailDto {
     private String title;
     private String description;
     private TaskStatus status;
-    private List<EmployeeSummaryDto> performers;
+    private Set<EmployeeSummaryDto> performers;
 
-    public static TaskDetailDto from(Task task){
+    public static TaskDetailDto from(Task task) {
         TaskDetailDto taskDetailDto = new TaskDetailDto();
         taskDetailDto.setId(task.getId());
         taskDetailDto.setTitle(task.getTitle());
         taskDetailDto.setDescription(task.getDescription());
         taskDetailDto.setStatus(task.getStatus());
 
-        taskDetailDto.setPerformers(task.getPerformers().stream()
-                .map(EmployeeSummaryDto::from)
-                .collect(Collectors.toList()));
+        Set<Employee> performers = task.getPerformers();
+        if (performers != null) {
+            taskDetailDto.setPerformers(performers.stream()
+                    .map(EmployeeSummaryDto::from)
+                    .collect(Collectors.toSet()));
+        }
         return taskDetailDto;
     }
 
@@ -59,11 +63,11 @@ public class TaskDetailDto {
         this.status = status;
     }
 
-    public List<EmployeeSummaryDto> getPerformers() {
+    public Set<EmployeeSummaryDto> getPerformers() {
         return performers;
     }
 
-    public void setPerformers(List<EmployeeSummaryDto> performers) {
+    public void setPerformers(Set<EmployeeSummaryDto> performers) {
         this.performers = performers;
     }
 }

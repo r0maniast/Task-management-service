@@ -2,7 +2,7 @@ package com.romankrivtsov.tms.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "employees")
@@ -30,11 +30,8 @@ public class Employee {
     @JoinColumn(name = "department_id")
     Department department;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "employee_task",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "task_id"))
-    private List<Task> tasks;
+    @ManyToMany(mappedBy = "performers")
+    private Set<Task> tasks;
 
     public Employee() {
     }
@@ -83,11 +80,21 @@ public class Employee {
         this.department = department;
     }
 
-    public List<Task> getTasks() {
+    public Set<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<Task> tasks) {
+    public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public void addTask(Task task){
+        this.getTasks().add(task);
+        task.getPerformers().add(this);
+    }
+
+    public void removeTask(Task task){
+        this.getTasks().remove(task);
+        task.getPerformers().remove(this);
     }
 }
