@@ -38,6 +38,13 @@ public class DepartmentAppService {
         return DepartmentDetailDto.from(department);
     }
 
+    public DepartmentDetailDto saveDepartment(DepartmentRequest departmentRequest) {
+        Department department = new Department();
+        department.setTitle(departmentRequest.getTitle());
+        Department savedDepartment = departmentServiceImp.saveDepartment(department);
+        return DepartmentDetailDto.from(savedDepartment);
+    }
+
     public DepartmentDetailDto updateDepartment(int id, DepartmentRequest departmentRequest) {
         Department department = departmentServiceImp.getDepartment(id);
         String title = departmentRequest.getTitle();
@@ -45,13 +52,6 @@ public class DepartmentAppService {
             department.setTitle(title);
         Department updatedDepartment = departmentServiceImp.updateDepartment(department);
         return DepartmentDetailDto.from(updatedDepartment);
-    }
-
-    public DepartmentDetailDto saveDepartment(DepartmentRequest departmentRequest) {
-        Department department = new Department();
-        department.setTitle(departmentRequest.getTitle());
-        Department savedDepartment = departmentServiceImp.saveDepartment(department);
-        return DepartmentDetailDto.from(savedDepartment);
     }
 
     public void deleteDepartment(int idDepartment) {

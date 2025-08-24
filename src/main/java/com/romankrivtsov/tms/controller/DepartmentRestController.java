@@ -36,13 +36,6 @@ public class DepartmentRestController {
         return departmentAppService.getDepartmentWithEmployee(id);
     }
 
-    @PutMapping("/{id}")
-    public DepartmentDetailDto updateDepartment(@PathVariable int id,
-                                            @Validated(UpdateValidate.class)
-                                                @RequestBody DepartmentRequest departmentRequest) {
-        return departmentAppService.updateDepartment(id, departmentRequest);
-    }
-
     @PostMapping
     public ResponseEntity<DepartmentDetailDto> saveDepartment(@Validated(CreateValidate.class)
                                                               @RequestBody DepartmentRequest departmentRequest) {
@@ -55,6 +48,13 @@ public class DepartmentRestController {
                 .toUri();
 
         return ResponseEntity.created(location).body(departmentDetailDto);
+    }
+
+    @PutMapping("/{id}")
+    public DepartmentDetailDto updateDepartment(@PathVariable int id,
+                                                @Validated(UpdateValidate.class)
+                                                @RequestBody DepartmentRequest departmentRequest) {
+        return departmentAppService.updateDepartment(id, departmentRequest);
     }
 
     @DeleteMapping("/{id}")

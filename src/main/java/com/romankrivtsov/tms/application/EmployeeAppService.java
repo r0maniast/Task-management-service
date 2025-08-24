@@ -37,6 +37,22 @@ public class EmployeeAppService {
         return EmployeeDetailDto.from(employee);
     }
 
+    public EmployeeDetailDto saveEmployee(EmployeeRequest employeeRequest) {
+        Employee employee = new Employee();
+        employee.setName(employeeRequest.getName());
+        employee.setSurname(employeeRequest.getSurname());
+        employee.setPosition(employeeRequest.getPosition());
+        employee.setDepartment(departmentServiceImp.getDepartment(employeeRequest.getDepartmentId()));
+
+        String patronymic = employeeRequest.getPatronymic();
+        if (patronymic != null) {
+            employee.setPatronymic(patronymic);
+        }
+
+        Employee savedEmployee = employeeServiceImp.saveEmployee(employee);
+        return EmployeeDetailDto.from(savedEmployee);
+    }
+
     public EmployeeDetailDto updateEmployee(int id, EmployeeRequest employeeRequest) {
         Employee employee = employeeServiceImp.getEmployee(id);
         String name = employeeRequest.getName();
@@ -56,22 +72,6 @@ public class EmployeeAppService {
             employee.setDepartment(departmentServiceImp.getDepartment(departmentId));
         Employee updatedEmployee = employeeServiceImp.updateEmployee(employee);
         return EmployeeDetailDto.from(updatedEmployee);
-    }
-
-    public EmployeeDetailDto saveEmployee(EmployeeRequest employeeRequest) {
-        Employee employee = new Employee();
-        employee.setName(employeeRequest.getName());
-        employee.setSurname(employeeRequest.getSurname());
-        employee.setPosition(employeeRequest.getPosition());
-        employee.setDepartment(departmentServiceImp.getDepartment(employeeRequest.getDepartmentId()));
-
-        String patronymic = employeeRequest.getPatronymic();
-        if (patronymic != null) {
-            employee.setPatronymic(patronymic);
-        }
-
-        Employee savedEmployee = employeeServiceImp.saveEmployee(employee);
-        return EmployeeDetailDto.from(savedEmployee);
     }
 
     public void deleteEmployee(int idEmployee){

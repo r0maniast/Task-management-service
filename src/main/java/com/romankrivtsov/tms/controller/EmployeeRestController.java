@@ -36,13 +36,6 @@ public class EmployeeRestController {
         return employeeAppService.getEmployeeWithTasks(id);
     }
 
-    @PutMapping("/{id}")
-    public EmployeeDetailDto updateEmployee(@PathVariable int id,
-                                            @Validated(UpdateValidate.class)
-                                                @RequestBody EmployeeRequest employeeRequest) {
-        return employeeAppService.updateEmployee(id, employeeRequest);
-    }
-
     @PostMapping
     public ResponseEntity<EmployeeDetailDto> saveEmployee(@Validated(CreateValidate.class)
                                                               @RequestBody EmployeeRequest employeeRequest) {
@@ -55,6 +48,13 @@ public class EmployeeRestController {
                 .toUri();
 
         return ResponseEntity.created(location).body(employeeDetailDto);
+    }
+
+    @PutMapping("/{id}")
+    public EmployeeDetailDto updateEmployee(@PathVariable int id,
+                                            @Validated(UpdateValidate.class)
+                                            @RequestBody EmployeeRequest employeeRequest) {
+        return employeeAppService.updateEmployee(id, employeeRequest);
     }
 
     @DeleteMapping("/{id}")
