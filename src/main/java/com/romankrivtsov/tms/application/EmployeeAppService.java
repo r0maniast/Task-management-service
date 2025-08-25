@@ -1,9 +1,12 @@
 package com.romankrivtsov.tms.application;
 
+import com.romankrivtsov.tms.dto.request.employee.EmployeeChangeTaskRequest;
 import com.romankrivtsov.tms.dto.request.employee.EmployeeRequest;
 import com.romankrivtsov.tms.dto.response.employee.EmployeeDetailDto;
 import com.romankrivtsov.tms.dto.response.employee.EmployeeSummaryDto;
+import com.romankrivtsov.tms.dto.response.employee.EmployeeTasksDto;
 import com.romankrivtsov.tms.entity.Employee;
+import com.romankrivtsov.tms.entity.Task;
 import com.romankrivtsov.tms.service.departmentService.DepartmentServiceImp;
 import com.romankrivtsov.tms.service.employeeService.EmployeeServiceImp;
 import com.romankrivtsov.tms.service.taskService.TaskServiceImp;
@@ -32,7 +35,7 @@ public class EmployeeAppService {
                 .toList();
     }
 
-    public EmployeeDetailDto getEmployeeWithTasks(int employeeId) {
+    public EmployeeDetailDto getEmployee(int employeeId) {
         Employee employee = employeeServiceImp.getEmployee(employeeId);
         return EmployeeDetailDto.from(employee);
     }
@@ -76,5 +79,50 @@ public class EmployeeAppService {
 
     public void deleteEmployee(int idEmployee){
         employeeServiceImp.deleteEmployee(idEmployee);
+    }
+
+    public EmployeeTasksDto getTasks(int id) {
+        Employee employee = employeeServiceImp.getEmployee(id);
+        return EmployeeTasksDto.from(employee);
+    }
+
+    public EmployeeTasksDto setTasks(int employeeId, EmployeeChangeTaskRequest employeeChangeTaskRequest) {
+        Employee employee = employeeServiceImp.getEmployee(employeeId);
+        List<Integer> oldTasksId = employee.getTasks().stream().map(Task::getId).toList();
+        List<Integer> untreatedNewTasksId = employeeChangeTaskRequest.getTasksId();
+
+        for(int taskId : oldTasksId) {
+            if(!untreatedNewTasksId.contains(taskId)) {
+                Task task = taskServiceImp.getTask(taskId);
+                task.removePerformer(employee);
+                taskServiceImp.updateTask(task);
+            } else {
+                untreatedNewTasksId.remove((Integer) taskId);
+            }
+        }
+
+        for(int taskId : untreatedNewTasksId) {
+            Task task = taskServiceImp.getTask(taskId);
+            task.addPerformer(employee);
+            taskServiceImp.updateTask(task);
+        }
+        return EmployeeTasksDto.from(employee);
+    }
+
+    public EmployeeTasksDto addTask(int idEmployee, int idTask) {
+        Employee employee = employeeServiceImp.getEmployee(idEmployee);
+        Task task = taskServiceImp.getTask(idTask);
+        task.addPerformer(employee);
+        taskServiceImp.updateTask(task);
+        return EmployeeTasksDto.from(employee);
+    }
+
+
+    public EmployeeTasksDto removeTask(int idEmployee, int idTask) {
+        Employee employee = employeeServiceImp.getEmployee(idEmployee);
+        Task task = taskServiceImp.getTask(idTask);
+        task.removePerformer(employee);
+        taskServiceImp.updateTask(task);
+        return EmployeeTasksDto.from(employee);
     }
 }
