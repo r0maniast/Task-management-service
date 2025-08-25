@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class TaskDetailDto {
-    private int id;
+    private int idTask;
     private String title;
     private String description;
     private TaskStatus status;
@@ -17,7 +17,7 @@ public class TaskDetailDto {
 
     public static TaskDetailDto from(Task task) {
         TaskDetailDto taskDetailDto = new TaskDetailDto();
-        taskDetailDto.setId(task.getId());
+        taskDetailDto.setIdTask(task.getId());
         taskDetailDto.setTitle(task.getTitle());
         taskDetailDto.setDescription(task.getDescription());
         taskDetailDto.setStatus(task.getStatus());
@@ -31,12 +31,12 @@ public class TaskDetailDto {
         return taskDetailDto;
     }
 
-    public int getId() {
-        return id;
+    public int getIdTask() {
+        return idTask;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTask(int idTask) {
+        this.idTask = idTask;
     }
 
     public String getTitle() {

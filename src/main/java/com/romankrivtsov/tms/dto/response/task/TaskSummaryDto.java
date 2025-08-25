@@ -4,24 +4,24 @@ import com.romankrivtsov.tms.entity.Task;
 import com.romankrivtsov.tms.entity.enums.TaskStatus;
 
 public class TaskSummaryDto {
-    private int id;
+    private int idTask;
     private String title;
     private TaskStatus status;
 
     public static TaskSummaryDto from(Task task){
         TaskSummaryDto taskSummaryDto = new TaskSummaryDto();
-        taskSummaryDto.setId(task.getId());
+        taskSummaryDto.setIdTask(task.getId());
         taskSummaryDto.setTitle(task.getTitle());
         taskSummaryDto.setStatus(task.getStatus());
         return taskSummaryDto;
     }
 
-    public int getId() {
-        return id;
+    public int getIdTask() {
+        return idTask;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTask(int idTask) {
+        this.idTask = idTask;
     }
 
     public String getTitle() {

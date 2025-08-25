@@ -4,7 +4,7 @@ import com.romankrivtsov.tms.dto.response.department.DepartmentSummaryDto;
 import com.romankrivtsov.tms.entity.Employee;
 
 public class EmployeeDetailDto {
-    private int id;
+    private int idEmployee;
     private String name;
     private String patronymic;
     private String surname;
@@ -13,7 +13,7 @@ public class EmployeeDetailDto {
 
     public static EmployeeDetailDto from(Employee employee){
         EmployeeDetailDto employeeDetailDto = new EmployeeDetailDto();
-        employeeDetailDto.setId(employee.getId());
+        employeeDetailDto.setIdEmployee(employee.getId());
         employeeDetailDto.setName(employee.getName());
         employeeDetailDto.setPatronymic(employee.getPatronymic());
         employeeDetailDto.setSurname(employee.getSurname());
@@ -23,12 +23,12 @@ public class EmployeeDetailDto {
         return employeeDetailDto;
     }
 
-    public int getId() {
-        return id;
+    public int getIdEmployee() {
+        return idEmployee;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdEmployee(int idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     public String getName() {

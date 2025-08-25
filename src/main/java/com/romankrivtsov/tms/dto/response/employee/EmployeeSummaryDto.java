@@ -3,26 +3,26 @@ package com.romankrivtsov.tms.dto.response.employee;
 import com.romankrivtsov.tms.entity.Employee;
 
 public class EmployeeSummaryDto {
-    private int id;
+    private int idEmployee;
     private String name;
     private String surname;
     private String position;
 
     public static EmployeeSummaryDto from(Employee employee){
         EmployeeSummaryDto employeeSummaryDto = new EmployeeSummaryDto();
-        employeeSummaryDto.setId(employee.getId());
+        employeeSummaryDto.setIdEmployee(employee.getId());
         employeeSummaryDto.setName(employee.getName());
         employeeSummaryDto.setSurname(employee.getSurname());
         employeeSummaryDto.setPosition(employee.getPosition());
         return employeeSummaryDto;
     }
 
-    public int getId() {
-        return id;
+    public int getIdEmployee() {
+        return idEmployee;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdEmployee(int idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     public String getName() {
