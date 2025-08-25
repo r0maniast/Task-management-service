@@ -4,6 +4,7 @@ import com.romankrivtsov.tms.dto.request.task.TaskChangePerformerRequest;
 import com.romankrivtsov.tms.dto.request.task.TaskRequest;
 import com.romankrivtsov.tms.dto.response.task.TaskDetailDto;
 import com.romankrivtsov.tms.dto.response.task.TaskSummaryDto;
+import com.romankrivtsov.tms.entity.Employee;
 import com.romankrivtsov.tms.entity.Task;
 import com.romankrivtsov.tms.entity.enums.TaskStatus;
 import com.romankrivtsov.tms.service.departmentService.DepartmentServiceImp;
@@ -12,7 +13,9 @@ import com.romankrivtsov.tms.service.taskService.TaskServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class TaskAppService {
@@ -64,16 +67,28 @@ public class TaskAppService {
         return TaskDetailDto.from(updatedTask);
     }
 
-    public TaskDetailDto addPerformers(int id, TaskChangePerformerRequest taskChangePerformerRequest) {
-        Task task = taskServiceImp.getTask(id);
-        task.addPerformer(employeeServiceImp.getEmployee(taskChangePerformerRequest.getIdPerformers()));
+    public TaskDetailDto setPerformers(int taskId, TaskChangePerformerRequest taskChangePerformerRequest) {
+        Task task = taskServiceImp.getTask(taskId);
+        Set<Employee> performers = new HashSet<>();
+        List<Integer> performersId = taskChangePerformerRequest.getPerformersId();
+        for(int performerId : performersId) {
+            performers.add(employeeServiceImp.getEmployee(performerId));
+        }
+        task.setPerformers(performers);
         Task updatedTask = taskServiceImp.updateTask(task);
         return TaskDetailDto.from(updatedTask);
     }
 
-    public TaskDetailDto removePerformers(int id, TaskChangePerformerRequest taskChangePerformerRequest) {
-        Task task = taskServiceImp.getTask(id);
-        task.removePerformer(employeeServiceImp.getEmployee(taskChangePerformerRequest.getIdPerformers()));
+    public TaskDetailDto addPerformer(int idTask, int idEmployee) {
+        Task task = taskServiceImp.getTask(idTask);
+        task.addPerformer(employeeServiceImp.getEmployee(idEmployee));
+        Task updatedTask = taskServiceImp.updateTask(task);
+        return TaskDetailDto.from(updatedTask);
+    }
+
+    public TaskDetailDto removePerformers(int idTask, int idEmployee) {
+        Task task = taskServiceImp.getTask(idTask);
+        task.removePerformer(employeeServiceImp.getEmployee(idEmployee));
         Task updatedTask = taskServiceImp.updateTask(task);
         return TaskDetailDto.from(updatedTask);
     }

@@ -2,16 +2,18 @@ package com.romankrivtsov.tms.dto.request.task;
 
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 public class TaskChangePerformerRequest {
 
     @NotNull
-    private int idPerformers;
+    private List<Integer> performersId;
 
-    public int getIdPerformers() {
-        return idPerformers;
+    public List<Integer> getPerformersId() {
+        return performersId;
     }
 
-    public void setIdPerformers(int idPerformers) {
-        this.idPerformers = idPerformers;
+    public void setPerformersId(List<Integer> performersId) {
+        this.performersId = performersId;
     }
 }

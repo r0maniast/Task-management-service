@@ -7,6 +7,7 @@ import com.romankrivtsov.tms.dto.response.task.TaskDetailDto;
 import com.romankrivtsov.tms.dto.response.task.TaskSummaryDto;
 import com.romankrivtsov.tms.util.validate.CreateValidate;
 import com.romankrivtsov.tms.util.validate.UpdateValidate;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +46,7 @@ public class TaskRestController {
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(taskDetailDto.getId())
+                .buildAndExpand(taskDetailDto.getIdTask())
                 .toUri();
 
         return ResponseEntity.created(location).body(taskDetailDto);
@@ -58,19 +59,23 @@ public class TaskRestController {
         return taskAppService.updateTask(id, taskRequest);
     }
 
-
-    @PutMapping("/{id}/addPerformer")
-    public TaskDetailDto addPerformer(@PathVariable int id,
-                                      @Validated(UpdateValidate.class)
-                                    @RequestBody TaskChangePerformerRequest taskChangePerformerRequest) {
-        return taskAppService.addPerformers(id, taskChangePerformerRequest);
+    @PutMapping("/{id}/performers")
+    public TaskDetailDto setPerformers(@PathVariable int id,
+                                      @Valid @RequestBody TaskChangePerformerRequest taskChangePerformerRequest) {
+        return taskAppService.setPerformers(id, taskChangePerformerRequest);
     }
 
-    @PutMapping("/{id}/removePerformer")
-    public TaskDetailDto removePerformer(@PathVariable int id,
-                                         @Validated(UpdateValidate.class)
-                                       @RequestBody TaskChangePerformerRequest taskChangePerformerRequest) {
-        return taskAppService.removePerformers(id, taskChangePerformerRequest);
+    @PutMapping("/{taskId}/performers/{employeeId}")
+    public TaskDetailDto addPerformer(@PathVariable int taskId,
+                                      @PathVariable int employeeId) {
+        return taskAppService.addPerformer(taskId, employeeId);
+    }
+
+
+    @DeleteMapping("/{taskId}/performers/{employeeId}")
+    public TaskDetailDto removePerformer(@PathVariable int taskId,
+                                         @PathVariable int employeeId) {
+        return taskAppService.removePerformers(taskId, employeeId);
     }
 
     @DeleteMapping("/{id}")
