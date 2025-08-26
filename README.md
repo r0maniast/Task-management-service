@@ -121,8 +121,7 @@ src/main/java/com/romankrivtsov/tms/
   - DELETE `/departments/{id}` — удаление департамента
 
 Примеры тел запросов:
-
-```json
+```
 // POST /employees
 {
   "firstName": "Ivan",
@@ -131,7 +130,7 @@ src/main/java/com/romankrivtsov/tms/
 }
 ```
 
-```json
+```
 // POST /tasks
 {
   "title": "Подготовить отчёт",
@@ -141,14 +140,14 @@ src/main/java/com/romankrivtsov/tms/
 }
 ```
 
-```json
+```
 // PUT /tasks/{id}/status
 {
   "status": "IN_PROGRESS"
 }
 ```
 
-### Сборка и тесты
+### Сборка
 - Сборка: `mvnw.cmd clean package` (Windows) или `./mvnw clean package`
 
 ### Автор
