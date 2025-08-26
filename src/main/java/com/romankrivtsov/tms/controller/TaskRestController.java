@@ -19,7 +19,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("/tasks")
 public class TaskRestController {
     private final TaskAppService taskAppService;
 
@@ -59,6 +59,12 @@ public class TaskRestController {
         return taskAppService.updateTask(id, taskRequest);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteTask(@PathVariable int id){
+        taskAppService.deleteTask(id);
+    }
+
     @PutMapping("/{id}/performers")
     public TaskDetailDto setPerformers(@PathVariable int id,
                                       @Valid @RequestBody TaskChangePerformerRequest taskChangePerformerRequest) {
@@ -76,11 +82,5 @@ public class TaskRestController {
     public TaskDetailDto removePerformer(@PathVariable int taskId,
                                          @PathVariable int employeeId) {
         return taskAppService.removePerformers(taskId, employeeId);
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteTask(@PathVariable int id){
-        taskAppService.deleteTask(id);
     }
 }
