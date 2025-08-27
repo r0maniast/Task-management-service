@@ -1,4 +1,4 @@
-package com.romankrivtsov.tms.application;
+package com.romankrivtsov.tms.application.employee;
 
 import com.romankrivtsov.tms.dto.request.employee.EmployeeChangeTaskRequest;
 import com.romankrivtsov.tms.dto.request.employee.EmployeeRequest;
@@ -16,18 +16,19 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EmployeeAppService {
+public class EmployeeAppServiceImp implements EmployeeAppService{
     private final EmployeeService employeeService;
     private final DepartmentService departmentService;
     private final TaskService taskService;
 
     @Autowired
-    public EmployeeAppService(EmployeeService employeeService, DepartmentService departmentService, TaskService taskService) {
+    public EmployeeAppServiceImp(EmployeeService employeeService, DepartmentService departmentService, TaskService taskService) {
         this.employeeService = employeeService;
         this.departmentService = departmentService;
         this.taskService = taskService;
     }
 
+    @Override
     public List<EmployeeSummaryDto> getAllEmployeesSummary() {
         List<Employee> allEmployees = employeeService.getAllEmployees();
         return allEmployees.stream()
@@ -35,11 +36,13 @@ public class EmployeeAppService {
                 .toList();
     }
 
+    @Override
     public EmployeeDetailDto getEmployee(int employeeId) {
         Employee employee = employeeService.getEmployee(employeeId);
         return EmployeeDetailDto.from(employee);
     }
 
+    @Override
     public EmployeeDetailDto saveEmployee(EmployeeRequest employeeRequest) {
         Employee employee = new Employee();
         employee.setName(employeeRequest.getName());
@@ -56,6 +59,7 @@ public class EmployeeAppService {
         return EmployeeDetailDto.from(savedEmployee);
     }
 
+    @Override
     public EmployeeDetailDto updateEmployee(int id, EmployeeRequest employeeRequest) {
         Employee employee = employeeService.getEmployee(id);
         String name = employeeRequest.getName();
@@ -77,15 +81,18 @@ public class EmployeeAppService {
         return EmployeeDetailDto.from(updatedEmployee);
     }
 
+    @Override
     public void deleteEmployee(int idEmployee){
         employeeService.deleteEmployee(idEmployee);
     }
 
+    @Override
     public EmployeeTasksDto getTasks(int id) {
         Employee employee = employeeService.getEmployee(id);
         return EmployeeTasksDto.from(employee);
     }
 
+    @Override
     public EmployeeTasksDto setTasks(int employeeId, EmployeeChangeTaskRequest employeeChangeTaskRequest) {
         Employee employee = employeeService.getEmployee(employeeId);
         List<Integer> oldTasksId = employee.getTasks().stream().map(Task::getId).toList();
@@ -109,6 +116,7 @@ public class EmployeeAppService {
         return EmployeeTasksDto.from(employee);
     }
 
+    @Override
     public EmployeeTasksDto addTask(int idEmployee, int idTask) {
         Employee employee = employeeService.getEmployee(idEmployee);
         Task task = taskService.getTask(idTask);
@@ -117,7 +125,7 @@ public class EmployeeAppService {
         return EmployeeTasksDto.from(employee);
     }
 
-
+    @Override
     public EmployeeTasksDto removeTask(int idEmployee, int idTask) {
         Employee employee = employeeService.getEmployee(idEmployee);
         Task task = taskService.getTask(idTask);

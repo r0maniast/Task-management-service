@@ -1,6 +1,6 @@
 package com.romankrivtsov.tms.controller;
 
-import com.romankrivtsov.tms.application.EmployeeAppService;
+import com.romankrivtsov.tms.application.employee.EmployeeAppService;
 import com.romankrivtsov.tms.dto.request.employee.EmployeeChangeTaskRequest;
 import com.romankrivtsov.tms.dto.request.employee.EmployeeRequest;
 import com.romankrivtsov.tms.dto.response.employee.EmployeeDetailDto;

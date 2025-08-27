@@ -1,4 +1,4 @@
-package com.romankrivtsov.tms.application;
+package com.romankrivtsov.tms.application.task;
 
 import com.romankrivtsov.tms.dto.request.task.TaskChangePerformerRequest;
 import com.romankrivtsov.tms.dto.request.task.TaskRequest;
@@ -18,19 +18,20 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class TaskAppService {
+public class TaskAppServiceImp implements TaskAppService{
     private final EmployeeService employeeService;
     private final DepartmentService departmentService;
     private final TaskService taskService;
 
     @Autowired
-    public TaskAppService(EmployeeService employeeService, DepartmentService departmentService,
-                          TaskService serviceImp) {
+    public TaskAppServiceImp(EmployeeService employeeService, DepartmentService departmentService,
+                             TaskService serviceImp) {
         this.employeeService = employeeService;
         this.departmentService = departmentService;
         this.taskService = serviceImp;
     }
 
+    @Override
     public List<TaskSummaryDto> getAllTasksSummary() {
         List<Task> allTasks = taskService.getAllTasks();
         return allTasks.stream()
@@ -38,11 +39,13 @@ public class TaskAppService {
                 .toList();
     }
 
+    @Override
     public TaskDetailDto getTaskWithPerformers(int taskId) {
         Task task = taskService.getTask(taskId);
         return TaskDetailDto.from(task);
     }
 
+    @Override
     public TaskDetailDto saveTask(TaskRequest taskRequest) {
         Task task = new Task();
         task.setTitle(taskRequest.getTitle());
@@ -52,6 +55,7 @@ public class TaskAppService {
         return TaskDetailDto.from(savedTask);
     }
 
+    @Override
     public TaskDetailDto updateTask(int id, TaskRequest taskRequest) {
         Task task = taskService.getTask(id);
         String title = taskRequest.getTitle();
@@ -67,6 +71,7 @@ public class TaskAppService {
         return TaskDetailDto.from(updatedTask);
     }
 
+    @Override
     public TaskDetailDto setPerformers(int taskId, TaskChangePerformerRequest taskChangePerformerRequest) {
         Task task = taskService.getTask(taskId);
         Set<Employee> performers = new HashSet<>();
@@ -79,6 +84,7 @@ public class TaskAppService {
         return TaskDetailDto.from(updatedTask);
     }
 
+    @Override
     public TaskDetailDto addPerformer(int idTask, int idEmployee) {
         Task task = taskService.getTask(idTask);
         task.addPerformer(employeeService.getEmployee(idEmployee));
@@ -86,6 +92,7 @@ public class TaskAppService {
         return TaskDetailDto.from(updatedTask);
     }
 
+    @Override
     public TaskDetailDto removePerformers(int idTask, int idEmployee) {
         Task task = taskService.getTask(idTask);
         task.removePerformer(employeeService.getEmployee(idEmployee));
@@ -93,6 +100,7 @@ public class TaskAppService {
         return TaskDetailDto.from(updatedTask);
     }
 
+    @Override
     public void deleteTask(int idTask) {
         taskService.deleteTask(idTask);
     }

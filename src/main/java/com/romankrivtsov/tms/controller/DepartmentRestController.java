@@ -1,6 +1,6 @@
 package com.romankrivtsov.tms.controller;
 
-import com.romankrivtsov.tms.application.DepartmentAppService;
+import com.romankrivtsov.tms.application.department.DepartmentAppService;
 import com.romankrivtsov.tms.dto.request.department.DepartmentRequest;
 import com.romankrivtsov.tms.dto.response.department.DepartmentDetailDto;
 import com.romankrivtsov.tms.dto.response.department.DepartmentSummaryDto;

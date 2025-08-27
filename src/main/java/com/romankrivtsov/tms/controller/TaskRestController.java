@@ -1,6 +1,6 @@
 package com.romankrivtsov.tms.controller;
 
-import com.romankrivtsov.tms.application.TaskAppService;
+import com.romankrivtsov.tms.application.task.TaskAppService;
 import com.romankrivtsov.tms.dto.request.task.TaskChangePerformerRequest;
 import com.romankrivtsov.tms.dto.request.task.TaskRequest;
 import com.romankrivtsov.tms.dto.response.task.TaskDetailDto;
