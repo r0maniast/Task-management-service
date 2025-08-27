@@ -7,9 +7,9 @@ import com.romankrivtsov.tms.dto.response.task.TaskSummaryDto;
 import com.romankrivtsov.tms.entity.Employee;
 import com.romankrivtsov.tms.entity.Task;
 import com.romankrivtsov.tms.entity.enums.TaskStatus;
-import com.romankrivtsov.tms.service.departmentService.DepartmentServiceImp;
-import com.romankrivtsov.tms.service.employeeService.EmployeeServiceImp;
-import com.romankrivtsov.tms.service.taskService.TaskServiceImp;
+import com.romankrivtsov.tms.service.departmentService.DepartmentService;
+import com.romankrivtsov.tms.service.employeeService.EmployeeService;
+import com.romankrivtsov.tms.service.taskService.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,27 +19,27 @@ import java.util.Set;
 
 @Service
 public class TaskAppService {
-    private final EmployeeServiceImp employeeServiceImp;
-    private final DepartmentServiceImp departmentServiceImp;
-    private final TaskServiceImp taskServiceImp;
+    private final EmployeeService employeeService;
+    private final DepartmentService departmentService;
+    private final TaskService taskService;
 
     @Autowired
-    public TaskAppService(EmployeeServiceImp employeeServiceImp, DepartmentServiceImp departmentServiceImp,
-                          TaskServiceImp taskServiceImp) {
-        this.employeeServiceImp = employeeServiceImp;
-        this.departmentServiceImp = departmentServiceImp;
-        this.taskServiceImp = taskServiceImp;
+    public TaskAppService(EmployeeService employeeService, DepartmentService departmentService,
+                          TaskService serviceImp) {
+        this.employeeService = employeeService;
+        this.departmentService = departmentService;
+        this.taskService = serviceImp;
     }
 
     public List<TaskSummaryDto> getAllTasksSummary() {
-        List<Task> allTasks = taskServiceImp.getAllTasks();
+        List<Task> allTasks = taskService.getAllTasks();
         return allTasks.stream()
                 .map(TaskSummaryDto::from)
                 .toList();
     }
 
     public TaskDetailDto getTaskWithPerformers(int taskId) {
-        Task task = taskServiceImp.getTask(taskId);
+        Task task = taskService.getTask(taskId);
         return TaskDetailDto.from(task);
     }
 
@@ -48,12 +48,12 @@ public class TaskAppService {
         task.setTitle(taskRequest.getTitle());
         task.setDescription(taskRequest.getDescription());
         task.setStatus(taskRequest.getStatus());
-        Task savedTask = taskServiceImp.saveTask(task);
+        Task savedTask = taskService.saveTask(task);
         return TaskDetailDto.from(savedTask);
     }
 
     public TaskDetailDto updateTask(int id, TaskRequest taskRequest) {
-        Task task = taskServiceImp.getTask(id);
+        Task task = taskService.getTask(id);
         String title = taskRequest.getTitle();
         String description = taskRequest.getDescription();
         TaskStatus status = taskRequest.getStatus();
@@ -63,37 +63,37 @@ public class TaskAppService {
             task.setDescription(description);
         if (status != null)
             task.setStatus(status);
-        Task updatedTask = taskServiceImp.updateTask(task);
+        Task updatedTask = taskService.updateTask(task);
         return TaskDetailDto.from(updatedTask);
     }
 
     public TaskDetailDto setPerformers(int taskId, TaskChangePerformerRequest taskChangePerformerRequest) {
-        Task task = taskServiceImp.getTask(taskId);
+        Task task = taskService.getTask(taskId);
         Set<Employee> performers = new HashSet<>();
         List<Integer> performersId = taskChangePerformerRequest.getPerformersId();
         for(int performerId : performersId) {
-            performers.add(employeeServiceImp.getEmployee(performerId));
+            performers.add(employeeService.getEmployee(performerId));
         }
         task.setPerformers(performers);
-        Task updatedTask = taskServiceImp.updateTask(task);
+        Task updatedTask = taskService.updateTask(task);
         return TaskDetailDto.from(updatedTask);
     }
 
     public TaskDetailDto addPerformer(int idTask, int idEmployee) {
-        Task task = taskServiceImp.getTask(idTask);
-        task.addPerformer(employeeServiceImp.getEmployee(idEmployee));
-        Task updatedTask = taskServiceImp.updateTask(task);
+        Task task = taskService.getTask(idTask);
+        task.addPerformer(employeeService.getEmployee(idEmployee));
+        Task updatedTask = taskService.updateTask(task);
         return TaskDetailDto.from(updatedTask);
     }
 
     public TaskDetailDto removePerformers(int idTask, int idEmployee) {
-        Task task = taskServiceImp.getTask(idTask);
-        task.removePerformer(employeeServiceImp.getEmployee(idEmployee));
-        Task updatedTask = taskServiceImp.updateTask(task);
+        Task task = taskService.getTask(idTask);
+        task.removePerformer(employeeService.getEmployee(idEmployee));
+        Task updatedTask = taskService.updateTask(task);
         return TaskDetailDto.from(updatedTask);
     }
 
     public void deleteTask(int idTask) {
-        taskServiceImp.deleteTask(idTask);
+        taskService.deleteTask(idTask);
     }
 }
