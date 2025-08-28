@@ -1,4 +1,4 @@
-package com.romankrivtsov.tms.dto.response.department;
+package com.romankrivtsov.tms.dto.response.departmentResponse;
 
 import com.romankrivtsov.tms.entity.Department;
 

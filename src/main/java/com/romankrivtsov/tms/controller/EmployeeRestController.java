@@ -1,11 +1,11 @@
 package com.romankrivtsov.tms.controller;
 
-import com.romankrivtsov.tms.application.employee.EmployeeAppService;
-import com.romankrivtsov.tms.dto.request.employee.EmployeeChangeTaskRequest;
-import com.romankrivtsov.tms.dto.request.employee.EmployeeRequest;
-import com.romankrivtsov.tms.dto.response.employee.EmployeeDetailDto;
-import com.romankrivtsov.tms.dto.response.employee.EmployeeSummaryDto;
-import com.romankrivtsov.tms.dto.response.employee.EmployeeTasksDto;
+import com.romankrivtsov.tms.application.employeeApp.EmployeeAppService;
+import com.romankrivtsov.tms.dto.request.employeeRequest.EmployeeChangeTaskRequest;
+import com.romankrivtsov.tms.dto.request.employeeRequest.EmployeeRequest;
+import com.romankrivtsov.tms.dto.response.employeeResponse.EmployeeDetailDto;
+import com.romankrivtsov.tms.dto.response.employeeResponse.EmployeeSummaryDto;
+import com.romankrivtsov.tms.dto.response.employeeResponse.EmployeeTasksDto;
 import com.romankrivtsov.tms.util.validate.CreateValidate;
 import com.romankrivtsov.tms.util.validate.UpdateValidate;
 import jakarta.validation.Valid;

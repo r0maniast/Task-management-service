@@ -1,10 +1,10 @@
 package com.romankrivtsov.tms.controller;
 
-import com.romankrivtsov.tms.application.task.TaskAppService;
-import com.romankrivtsov.tms.dto.request.task.TaskChangePerformerRequest;
-import com.romankrivtsov.tms.dto.request.task.TaskRequest;
-import com.romankrivtsov.tms.dto.response.task.TaskDetailDto;
-import com.romankrivtsov.tms.dto.response.task.TaskSummaryDto;
+import com.romankrivtsov.tms.application.taskApp.TaskAppService;
+import com.romankrivtsov.tms.dto.request.taskRequest.TaskChangePerformerRequest;
+import com.romankrivtsov.tms.dto.request.taskRequest.TaskRequest;
+import com.romankrivtsov.tms.dto.response.taskResponse.TaskDetailDto;
+import com.romankrivtsov.tms.dto.response.taskResponse.TaskSummaryDto;
 import com.romankrivtsov.tms.util.validate.CreateValidate;
 import com.romankrivtsov.tms.util.validate.UpdateValidate;
 import jakarta.validation.Valid;

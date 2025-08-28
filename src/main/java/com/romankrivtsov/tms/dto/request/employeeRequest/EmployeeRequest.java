@@ -1,4 +1,4 @@
-package com.romankrivtsov.tms.dto.request.employee;
+package com.romankrivtsov.tms.dto.request.employeeRequest;
 
 import com.romankrivtsov.tms.util.validate.CreateValidate;
 import jakarta.validation.constraints.Min;

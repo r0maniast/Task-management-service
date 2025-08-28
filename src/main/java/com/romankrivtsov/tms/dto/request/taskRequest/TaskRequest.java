@@ -1,4 +1,4 @@
-package com.romankrivtsov.tms.dto.request.task;
+package com.romankrivtsov.tms.dto.request.taskRequest;
 
 import com.romankrivtsov.tms.entity.enums.TaskStatus;
 import com.romankrivtsov.tms.util.validate.CreateValidate;

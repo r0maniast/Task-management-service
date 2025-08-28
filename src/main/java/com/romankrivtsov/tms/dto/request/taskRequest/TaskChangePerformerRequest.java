@@ -1,4 +1,4 @@
-package com.romankrivtsov.tms.dto.request.task;
+package com.romankrivtsov.tms.dto.request.taskRequest;
 
 import jakarta.validation.constraints.NotNull;
 

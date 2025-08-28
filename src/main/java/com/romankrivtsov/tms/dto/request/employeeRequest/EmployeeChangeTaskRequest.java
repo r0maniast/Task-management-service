@@ -1,4 +1,4 @@
-package com.romankrivtsov.tms.dto.request.employee;
+package com.romankrivtsov.tms.dto.request.employeeRequest;
 
 import jakarta.validation.constraints.NotNull;
 

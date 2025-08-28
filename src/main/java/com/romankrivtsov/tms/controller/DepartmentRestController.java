@@ -1,9 +1,9 @@
 package com.romankrivtsov.tms.controller;
 
-import com.romankrivtsov.tms.application.department.DepartmentAppService;
-import com.romankrivtsov.tms.dto.request.department.DepartmentRequest;
-import com.romankrivtsov.tms.dto.response.department.DepartmentDetailDto;
-import com.romankrivtsov.tms.dto.response.department.DepartmentSummaryDto;
+import com.romankrivtsov.tms.application.departmentApp.DepartmentAppService;
+import com.romankrivtsov.tms.dto.request.departmentRequest.DepartmentRequest;
+import com.romankrivtsov.tms.dto.response.departmentResponse.DepartmentDetailDto;
+import com.romankrivtsov.tms.dto.response.departmentResponse.DepartmentSummaryDto;
 import com.romankrivtsov.tms.util.validate.CreateValidate;
 import com.romankrivtsov.tms.util.validate.UpdateValidate;
 import org.springframework.beans.factory.annotation.Autowired;

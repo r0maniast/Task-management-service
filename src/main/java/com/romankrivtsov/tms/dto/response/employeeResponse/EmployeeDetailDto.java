@@ -1,6 +1,6 @@
-package com.romankrivtsov.tms.dto.response.employee;
+package com.romankrivtsov.tms.dto.response.employeeResponse;
 
-import com.romankrivtsov.tms.dto.response.department.DepartmentSummaryDto;
+import com.romankrivtsov.tms.dto.response.departmentResponse.DepartmentSummaryDto;
 import com.romankrivtsov.tms.entity.Employee;
 
 public class EmployeeDetailDto {

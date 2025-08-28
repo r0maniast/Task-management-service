@@ -1,10 +1,10 @@
-package com.romankrivtsov.tms.application.employee;
+package com.romankrivtsov.tms.application.employeeApp;
 
-import com.romankrivtsov.tms.dto.request.employee.EmployeeChangeTaskRequest;
-import com.romankrivtsov.tms.dto.request.employee.EmployeeRequest;
-import com.romankrivtsov.tms.dto.response.employee.EmployeeDetailDto;
-import com.romankrivtsov.tms.dto.response.employee.EmployeeSummaryDto;
-import com.romankrivtsov.tms.dto.response.employee.EmployeeTasksDto;
+import com.romankrivtsov.tms.dto.request.employeeRequest.EmployeeChangeTaskRequest;
+import com.romankrivtsov.tms.dto.request.employeeRequest.EmployeeRequest;
+import com.romankrivtsov.tms.dto.response.employeeResponse.EmployeeDetailDto;
+import com.romankrivtsov.tms.dto.response.employeeResponse.EmployeeSummaryDto;
+import com.romankrivtsov.tms.dto.response.employeeResponse.EmployeeTasksDto;
 
 import java.util.List;
 

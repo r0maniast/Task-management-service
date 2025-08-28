@@ -1,4 +1,4 @@
-package com.romankrivtsov.tms.dto.request.department;
+package com.romankrivtsov.tms.dto.request.departmentRequest;
 
 import com.romankrivtsov.tms.util.validate.CreateValidate;
 import jakarta.validation.constraints.NotBlank;

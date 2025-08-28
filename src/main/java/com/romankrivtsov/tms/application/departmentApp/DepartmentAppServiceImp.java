@@ -1,8 +1,8 @@
-package com.romankrivtsov.tms.application.department;
+package com.romankrivtsov.tms.application.departmentApp;
 
-import com.romankrivtsov.tms.dto.request.department.DepartmentRequest;
-import com.romankrivtsov.tms.dto.response.department.DepartmentDetailDto;
-import com.romankrivtsov.tms.dto.response.department.DepartmentSummaryDto;
+import com.romankrivtsov.tms.dto.request.departmentRequest.DepartmentRequest;
+import com.romankrivtsov.tms.dto.response.departmentResponse.DepartmentDetailDto;
+import com.romankrivtsov.tms.dto.response.departmentResponse.DepartmentSummaryDto;
 import com.romankrivtsov.tms.entity.Department;
 import com.romankrivtsov.tms.service.departmentService.DepartmentService;
 import com.romankrivtsov.tms.service.employeeService.EmployeeService;

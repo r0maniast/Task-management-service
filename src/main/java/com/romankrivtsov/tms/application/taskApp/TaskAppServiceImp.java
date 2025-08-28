@@ -1,9 +1,9 @@
-package com.romankrivtsov.tms.application.task;
+package com.romankrivtsov.tms.application.taskApp;
 
-import com.romankrivtsov.tms.dto.request.task.TaskChangePerformerRequest;
-import com.romankrivtsov.tms.dto.request.task.TaskRequest;
-import com.romankrivtsov.tms.dto.response.task.TaskDetailDto;
-import com.romankrivtsov.tms.dto.response.task.TaskSummaryDto;
+import com.romankrivtsov.tms.dto.request.taskRequest.TaskChangePerformerRequest;
+import com.romankrivtsov.tms.dto.request.taskRequest.TaskRequest;
+import com.romankrivtsov.tms.dto.response.taskResponse.TaskDetailDto;
+import com.romankrivtsov.tms.dto.response.taskResponse.TaskSummaryDto;
 import com.romankrivtsov.tms.entity.Employee;
 import com.romankrivtsov.tms.entity.Task;
 import com.romankrivtsov.tms.entity.enums.TaskStatus;

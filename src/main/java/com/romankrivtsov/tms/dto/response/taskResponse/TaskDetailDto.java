@@ -1,6 +1,6 @@
-package com.romankrivtsov.tms.dto.response.task;
+package com.romankrivtsov.tms.dto.response.taskResponse;
 
-import com.romankrivtsov.tms.dto.response.employee.EmployeeSummaryDto;
+import com.romankrivtsov.tms.dto.response.employeeResponse.EmployeeSummaryDto;
 import com.romankrivtsov.tms.entity.Employee;
 import com.romankrivtsov.tms.entity.Task;
 import com.romankrivtsov.tms.entity.enums.TaskStatus;

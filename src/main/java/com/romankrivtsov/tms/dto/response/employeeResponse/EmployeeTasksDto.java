@@ -1,6 +1,6 @@
-package com.romankrivtsov.tms.dto.response.employee;
+package com.romankrivtsov.tms.dto.response.employeeResponse;
 
-import com.romankrivtsov.tms.dto.response.task.TaskSummaryDto;
+import com.romankrivtsov.tms.dto.response.taskResponse.TaskSummaryDto;
 import com.romankrivtsov.tms.entity.Employee;
 
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.romankrivtsov.tms.dto.response.employee;
+package com.romankrivtsov.tms.dto.response.employeeResponse;
 
 import com.romankrivtsov.tms.entity.Employee;
 
