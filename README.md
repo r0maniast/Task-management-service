@@ -41,9 +41,15 @@ src/main/java/com/romankrivtsov/tms/
 │   ├── TaskRestController.java
 │   └── DepartmentRestController.java
 ├── application/
-│   ├── EmployeeAppService.java
-│   ├── TaskAppService.java
-│   └── DepartmentAppService.java
+│   ├── departmentApp/
+│   │   ├── DepartmentAppService.java
+│   │   └── DepartmentAppServiceImp.java
+│   ├── employeeApp/
+│   │   ├── EmployeeAppService.java
+│   │   └── EmployeeAppServiceImp.java
+│   └── taskApp/
+│       ├── TaskAppService.java
+│       └── TaskAppServiceImp.java
 ├── service/
 │   ├── employeeService/
 │   │   ├── EmployeeService.java
@@ -60,23 +66,23 @@ src/main/java/com/romankrivtsov/tms/
 │   └── DepartmentRepository.java
 ├── dto/
 │   ├── request/
-│   │   ├── employee/
+│   │   ├── employeeRequest/
 │   │   │   ├── EmployeeRequest.java
 │   │   │   └── EmployeeChangeTaskRequest.java
-│   │   ├── task/
+│   │   ├── taskRequest/
 │   │   │   ├── TaskRequest.java
 │   │   │   └── TaskChangePerformerRequest.java
-│   │   └── department/
+│   │   └── departmentRequest/
 │   │       └── DepartmentRequest.java
 │   └── response/
-│       ├── employee/
+│       ├── employeeResponse/
 │       │   ├── EmployeeDetailDto.java
 │       │   ├── EmployeeSummaryDto.java
 │       │   └── EmployeeTasksDto.java
-│       ├── task/
+│       ├── taskResponse/
 │       │   ├── TaskDetailDto.java
 │       │   └── TaskSummaryDto.java
-│       └── department/
+│       └── departmentResponse/
 │           ├── DepartmentDetailDto.java
 │           └── DepartmentSummaryDto.java
 ├── entity/
